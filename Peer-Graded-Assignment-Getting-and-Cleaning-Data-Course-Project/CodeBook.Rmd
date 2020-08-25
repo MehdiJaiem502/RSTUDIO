@@ -1,0 +1,32 @@
+---
+title: "CodeBook.md"
+author: "Mehdi Jaiem"
+date: "8/25/2020"
+output: html_document
+---
+# R script Description
+
+The **run_analysis.R** script prepares the data and executes the following 5 steps required as stated in the course project’s definition:
+
+ 1. Merges the training and the test sets to create one data set.
+ Using the rbind() function, the train data sets will be summarized in a new one.
+ This also applies to the train and test data sets using the same function,  
+ After binding and obtaining the required data sets, we will use the Merge function to obtain the final version of the combined datasets.
+ 
+ 2. Extracts only the measurements on the mean and standard deviation for        each measurement.
+ The final data set obtained in 1. will be used to extract  specific columns using chaining and functions such as select()
+ 
+ 3. Uses descriptive activity names to name the activities in the data set
+ In the obtained tidy dataset in 2., values in the code column, will be replaced by values from the activities variable.
+ 
+ 4. Labels the data set with descriptive variable names.
+ In this step of the code, we will modify the column names with ones that we will specify. This can be repeatedly done using gsub() function
+ 
+ 5. From the data set in step 4, creates a second, independent tidy data set     with the average of each variable for each activity and each subject     
+This step summarizes the tiny dataset in a second one on which we used the aggregate function. The new dataset will finally be transmitted and written in a table.
+
+# Used variables
+
+* **x_train, y_train, subject_train,x_test, y_test and subject_test** describe the data from the downloaded files in txt format.
+* **x_data, y_data and subject_data** merge the described data sets above.
+* **features** describes the correct names for the x_data dataset, these names are related to the column names.
