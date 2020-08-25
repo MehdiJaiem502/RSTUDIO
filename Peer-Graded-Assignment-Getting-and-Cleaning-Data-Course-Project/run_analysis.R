@@ -35,15 +35,15 @@ activityLabels = read.table('./data/UCI HAR Dataset/activity_labels.txt')
 
 # 1.2 Column names assignement:
 
-ColumNames(x_train) <- features[,2]
-ColumNames(y_train) <-"activityId"
-ColumNames(subject_train) <- "subjectId"
+colnames(x_train) <- features[,2]
+colnames(y_train) <-"activityId"
+colnames(subject_train) <- "subjectId"
 
-ColumNames(x_test) <- features[,2] 
-ColumNames(y_test) <- "activityId"
-ColumNames(subject_test) <- "subjectId"
+colnames(x_test) <- features[,2] 
+colnames(y_test) <- "activityId"
+colnames(subject_test) <- "subjectId"
 
-ColumNames(activityLabels) <- c('activityId','activityType')
+colnames(activityLabels) <- c('activityId','activityType')
 
 #1.3 Creation of a one set through the data Merge:
 
@@ -58,11 +58,15 @@ FinalMerge <- rbind(MergeTrain, MergeTest)
 
 #2.1 Reading column names:
 
-ColumNames <- ColumNames(FinalMerge)
+colNames <- colnames(FinalMerge)
 
 #2.2 Create vector for defining ID, mean and standard deviation:
 
-MeanStd <- FinalMerge %>% select(subject, code, contains("mean"), contains("std"))
+MeanStd <- (grepl("activityId" , colNames) | 
+                         grepl("subjectId" , colNames) | 
+                         grepl("mean" , colNames) | 
+                         grepl("std" , colNames) 
+)
 
 #2.3 Making necessary subset from FinalMerge:
 
